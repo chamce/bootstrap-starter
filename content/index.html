@@ -1,1 +1,109 @@
-<h1 class="text-red">Hello, world!</h1>
+<div class="d-flex flex-wrap justify-content-around gap-4 m-4" !important>
+  <div class="w-100 rounded border text-center p-2 lh-1">
+    <div class="d-flex flex-column gap-1" !important>
+      <div class="fs-2">Recent Activity</div>
+      <td class="tg-dxxx" colspan="4" style="text-align: center;"><strong>Ticket:</strong> {{ticket_timestamp | rawhtml}}&nbsp;<strong> Call Timestamp:</strong>&nbsp;{{call_timestamp | rawhtml}}  <strong>Walk-in Timestamp:</strong> {{walkin_timestamp | rawhtml}}<strong></strong></td>
+  
+    </div>
+  </div>
+  <div style="width: 250px" class="rounded border text-center p-2 lh-1">
+    <div class="d-flex flex-column gap-1" !important>
+      <div class="fw-bold">ID</div>
+      <div style="color: #cc8400; font-size: 1.5em">{{pEKUID}}</div>
+      <span class="detail">Slate Ref: {{pRef}}</span>
+    </div>
+  </div>
+</div>
+<div style="width: 250px" class="rounded border text-center p-2 lh-1">
+  <div class="d-flex flex-column gap-1" !important>
+    <div class="fw-bold">Status</div>
+    <div style="color: #00aa00; font-size: 1.5em">{{pStatus}}</div>
+    <span class="detail">Campus: {{pCampus}}</span>
+  </div>
+</div>
+<div style="width: 250px" class="rounded border text-center p-2 lh-1">
+  <div class="d-flex flex-column gap-1" !important>
+    <div class="fw-bold">Student Type</div>
+    <div style="color: #00aa00; font-size: 1.25em">{{pType}}</div>
+    <span class="detail"></span>
+  </div>
+</div>
+<div style="width: 250px" class="rounded border text-center p-2 lh-1">
+  <div class="d-flex flex-column gap-1">
+    <div class="fw-bold">College</div>
+    <div style="color: #00aa00; font-size: 1.5em">{{pCollege}}</div>
+    <span class="detail">Dept: {{pDepartment1}}</span>
+  </div>
+</div>
+<div style="width: 250px" class="rounded border text-center p-2 lh-1">
+  <div class="d-flex flex-column gap-1">
+    <div class="fw-bold">Program</div>
+    <div style="color: #00aa00; font-size: 1.5em">{{pProgram1}}</div>
+    <span class="detail">{{pConcentration1}}</span>
+  </div>
+</div>
+<div style="width: 250px" class="rounded border text-center p-2 lh-1">
+  <div class="d-flex flex-column gap-1">
+    <div class="fw-bold">Academic Standing</div>
+    <div style="color: #00aa00; font-size: 1.5em">{{pClass}}</div>
+    <span class="detail">Level: <span class="detail">{{pLevel}}</span></span>
+  </div>
+  <div style="width: 250px" class="rounded border text-center p-2 lh-1">
+    <div class="d-flex flex-column gap-1">
+      <div class="fw-bold">Residency</div>
+      <div style="color: #00aa00; font-size: 1.5em;">
+        {{pResidency}}
+      </div>
+      <span class="detail"></span>
+    </div>
+  </div>
+  <div style="width: 250px" class="rounded border text-center p-2 lh-1">
+    <div class="d-flex flex-column gap-1">
+      <div class="fw-bold">Registration Terms</div>
+      <div style="color: #00aa00; font-size: 1.5em;">
+        {{pRegTerm}}
+      </div>
+    </div>
+  </div>
+  <div style="width: 250px" class="rounded border text-center p-2 lh-1">
+    <div class="d-flex flex-column gap-1">
+      <div class="fw-bold">In Progress Hours</div>
+      <div style="color: #00aa00; font-size: 1.5em;">
+        {{pIPHours}}
+      </div>
+    </div>
+  </div>
+  <div class="d-flex gap-4 w-100 flex-wrap flex-md-nowrap">
+    <div class="w-100 border rounded text-center">
+      <div class="fs-3">Financial Aid</div>
+      <div> FAFSA On File: {% if {{FAFSAOnFile}} != '' %}{{FAFSAOnFile}}{% else %}N/A{% endif %}<br />
+        FAFSA AIDY: {{pFAFSAAidY}}<br />
+        KHEAA Verification Selected: {{pVerificationSelected}} <br />
+        KHEAA Verification Complete: {{pVerificationComplete}} <br />
+        Missing Requirements: {{ptracking_requirements}}<br />
+        SAP Status: {{psap}}<br />
+        Financial Aid Package: {{financial_aid}}</td>
+    </div>
+    <div class="w-100 border rounded text-center">
+      <div class="fs-3">Student Accounting</div>
+      <div> Balance: {{pBalance}}
+      </div>
+      <span class="tg-dxxx" colspan="4" style="font-size: 0.8em;"><a href="https://argosp.eku.edu/Argos/AWV/#explorer/Finance%00Accounts%20Receivable/Student%20Account%20Summary/" target="_blank">Click Here for Argos Report</a></span><br />
+        Holds: {% if {{pHolds}} != 'N/A' %} <br /> <span class="tg-dxxx" colspan="4" style="font-size: 0.8em;"><a href="https://success.eku.edu/manage/lookup/record?cmd=impersonate&amp;id={{pGUID}}&amp;r=https://success.eku.edu/portal/eku-holds" target="_blank">Click Here to Review Holds</a></span>{% endif %}<br />
+        ER Indicator: {{er_hold}} <br />
+        Payment Plan Status: {{pVerificationSelected}} </td>
+    </div>
+    <div class="w-100 border rounded text-center">
+      <div class="fs-3">Registrar</div>
+      <div> Advisor Information: {{advisor_name}}<br />
+        {{advisor_email}}<br />
+        Current/Future Registration Indicator: {{fafsa_aidy}}<br />
+        Reigstered: {{er_hold}} <br />
+        Midterm Recovery: {% endif %}{% if {{pMidtermRecovery}} != '' %} {{pMidtermRecovery}} <br / >
+        Earned Hours: {{pVerificationSelected}} <br / > 
+        {% endif %}{% if {{pCampusCurrentCourses}} != '' %}
+        Campus Current Courses: {{pCampusCurrentCourses}} </td>
+      </div>
+    </div>
+  </div>
+</div>
